@@ -1,5 +1,6 @@
 package com.polls.polls.model;
 
+import com.polls.polls.model.audit.DateAudit;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ import java.util.Set;
                 "email"
         })
 })
-public class User {
+public class User extends DateAudit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +52,8 @@ public class User {
     public User() {
     }
 
-    public User(@NotBlank @Size(max = 40) String name, @NotBlank @Size(max = 15) String username, @NotBlank @Size(max = 40) @Email String email, @NotBlank @Size(max = 100) String password) {
+    public User(@NotBlank @Size(max = 40) String name, @NotBlank @Size(max = 15) String username,
+                @NotBlank @Size(max = 40) @Email String email, @NotBlank @Size(max = 100) String password) {
         this.name = name;
         this.username = username;
         this.email = email;
